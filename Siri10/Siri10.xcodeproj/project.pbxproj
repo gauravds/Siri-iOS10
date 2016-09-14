@@ -16,6 +16,7 @@
 		A45953961D88518500EDCE90 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45953951D88518500EDCE90 /* IntentViewController.swift */; };
 		A45953991D88518500EDCE90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45953971D88518500EDCE90 /* MainInterface.storyboard */; };
 		A459539D1D88518500EDCE90 /* Siri.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A45953901D88518500EDCE90 /* Siri.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A4C1F0141D89971400B1E918 /* Guruvani.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A4C1F0131D89971400B1E918 /* Guruvani.m4a */; };
 		A4C35B761D8922F4003C9EB2 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C35B751D8922F4003C9EB2 /* Speech.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		A45953951D88518500EDCE90 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		A45953981D88518500EDCE90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A459539A1D88518500EDCE90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4C1F0131D89971400B1E918 /* Guruvani.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Guruvani.m4a; sourceTree = "<group>"; };
 		A4C35B751D8922F4003C9EB2 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 		A45953791D881D5A00EDCE90 /* Siri10 */ = {
 			isa = PBXGroup;
 			children = (
+				A4C1F0131D89971400B1E918 /* Guruvani.m4a */,
 				A459537A1D881D5B00EDCE90 /* AppDelegate.swift */,
 				A459537C1D881D5B00EDCE90 /* ViewController.swift */,
 				A459537E1D881D5C00EDCE90 /* Main.storyboard */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A45953851D881D5C00EDCE90 /* LaunchScreen.storyboard in Resources */,
+				A4C1F0141D89971400B1E918 /* Guruvani.m4a in Resources */,
 				A45953821D881D5C00EDCE90 /* Assets.xcassets in Resources */,
 				A45953801D881D5C00EDCE90 /* Main.storyboard in Resources */,
 			);

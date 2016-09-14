@@ -13,6 +13,7 @@ import Speech
 class ViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBOutlet var recordButton: UIButton!
+    @IBOutlet var txtView: UITextView!
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
@@ -61,9 +62,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     public let audioFileName : String? = {
-        let url = String(ViewController.getDocumentsDirectory().strings(byAppendingPaths: ["recording.m4a"])[0])
-        print(url)
-        return url
+        return String(ViewController.getDocumentsDirectory().strings(byAppendingPaths: ["recording.m4a"])[0])
     }()
 
     class func getDocumentsDirectory() -> NSString {
@@ -86,11 +85,14 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func recordTapped() {
-        if audioRecorder == nil {
-            startRecording()
-        } else {
-            finishRecording(success: true)
-        }
+        speechTest()
+        
+        
+//        if audioRecorder == nil {
+//            startRecording()
+//        } else {
+//            finishRecording(success: true)
+//        }
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -103,15 +105,15 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     func speechTest() {
         SFSpeechRecognizer.requestAuthorization { authStatus in
             if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
-                if self.audioFileName != nil {
+                if let path = Bundle.main.url(forResource: "Guruvani", withExtension: "m4a") {
                     let recognizer = SFSpeechRecognizer()
-                    let audioURL = URL(string: self.audioFileName!)
-                    let request = SFSpeechURLRecognitionRequest(url: audioURL!)
+                    let request = SFSpeechURLRecognitionRequest(url: path)
                     recognizer?.recognitionTask(with: request, resultHandler: { (result, error) in
                         if let error = error {
                             print("There was an error: \(error)")
                         } else {
                             print (result?.bestTranscription.formattedString)
+                            self.txtView.text = result?.bestTranscription.formattedString
                         }
                     })
                 }
