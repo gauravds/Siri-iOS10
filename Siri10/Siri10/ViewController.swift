@@ -61,7 +61,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     public let audioFileName : String? = {
-        return String(ViewController.getDocumentsDirectory().strings(byAppendingPaths: ["recording.m4a"])[0])
+        let url = String(ViewController.getDocumentsDirectory().strings(byAppendingPaths: ["recording.m4a"])[0])
+        print(url)
+        return url
     }()
 
     class func getDocumentsDirectory() -> NSString {
