@@ -26,6 +26,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         return String(completePaths[0])
     }()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +49,16 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    //MARK: IBActions
+    @IBAction func recordTapped() {
+        if audioRecorder == nil {
+            startRecording()
+        } else {
+            finishRecording(success: true)
+        }
+    }
+    
+    //MARK: Audio Recording
     func startRecording() {
         let audioURL = URL(string: audioFileName!)
         
@@ -83,17 +94,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    @IBAction func recordTapped() {
-        speechTest()
-        
-        
-        if audioRecorder == nil {
-            startRecording()
-        } else {
-            finishRecording(success: true)
-        }
-    }
-    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             finishRecording(success: false)
@@ -114,6 +114,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
                             self.logger.text = err
                             print(err)
                         } else {
+                            self.logger.text = "working..."
                             let msg = result?.bestTranscription.formattedString
                             self.txtView.text = msg
                             print(msg)
@@ -122,11 +123,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
                 }
             }
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
