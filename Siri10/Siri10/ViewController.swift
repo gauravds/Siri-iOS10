@@ -14,9 +14,17 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBOutlet var recordButton: UIButton!
     @IBOutlet var txtView: UITextView!
+    @IBOutlet var logger: UITextView!
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    
+    public let audioFileName : String? = {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let completePaths = (documentsDirectory as NSString).strings(byAppendingPaths: ["recording.m4a"])
+        return String(completePaths[0])
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +37,14 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             recordingSession.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
                 DispatchQueue.main.async {
                     if allowed {
-                        
+                       self.logger.text = "audio recording can start"
                     } else {
-                        // failed to record!
+                        self.logger.text = "ERROR: failed to record!"
                     }
                 }
             }
         } catch {
-            // failed to record!
+            self.logger.text = "ERROR: failed to record!"
         }
     }
     
@@ -53,22 +61,13 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         do {
             audioRecorder = try AVAudioRecorder(url: audioURL!, settings: settings)
             audioRecorder.delegate = self
+            audioRecorder.prepareToRecord()
             audioRecorder.record()
             
             recordButton.setTitle("Tap to Stop", for: .normal)
         } catch {
             finishRecording(success: false)
         }
-    }
-    
-    public let audioFileName : String? = {
-        return String(ViewController.getDocumentsDirectory().strings(byAppendingPaths: ["recording.m4a"])[0])
-    }()
-
-    class func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory as NSString
     }
     
     func finishRecording(success: Bool) {
@@ -88,11 +87,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         speechTest()
         
         
-//        if audioRecorder == nil {
-//            startRecording()
-//        } else {
-//            finishRecording(success: true)
-//        }
+        if audioRecorder == nil {
+            startRecording()
+        } else {
+            finishRecording(success: true)
+        }
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -103,17 +102,21 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     //MARK: Siri in build
     func speechTest() {
+        self.logger.text = "Please wait..."
         SFSpeechRecognizer.requestAuthorization { authStatus in
             if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
                 if let path = Bundle.main.url(forResource: "Guruvani", withExtension: "m4a") {
                     let recognizer = SFSpeechRecognizer()
                     let request = SFSpeechURLRecognitionRequest(url: path)
-                    recognizer?.recognitionTask(with: request, resultHandler: { (result, error) in
+                    recognizer?.recognitionTask(with: request, resultHandler: { [unowned self] (result, error) in
                         if let error = error {
-                            print("There was an error: \(error)")
+                            let err = "There was an error: \(error)"
+                            self.logger.text = err
+                            print(err)
                         } else {
-                            print (result?.bestTranscription.formattedString)
-                            self.txtView.text = result?.bestTranscription.formattedString
+                            let msg = result?.bestTranscription.formattedString
+                            self.txtView.text = msg
+                            print(msg)
                         }
                     })
                 }
