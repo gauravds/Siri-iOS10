@@ -37,12 +37,18 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0H-C3-xcm" customClass="DesignBtn">
                                 <state key="normal" title="Redeem"/>
+                                <connections>
+                                    <action selector="btnRedeemTapped:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="3Uh-rO-UFq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1T-eI-o6H" customClass="DesignBtn">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cwC-cX-kfP"/>
                                 </constraints>
                                 <state key="normal" title="Earn"/>
+                                <connections>
+                                    <action selector="btnEarnTapped:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="UeW-D1-Cd9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

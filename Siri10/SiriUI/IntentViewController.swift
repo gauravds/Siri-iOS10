@@ -1,8 +1,8 @@
 //
 //  IntentViewController.swift
-//  Siri
+//  SiriUI
 //
-//  Created by Gaurav Sharma on 13/09/16.
+//  Created by Gaurav Sharma on 15/09/16.
 //  Copyright © 2016 GDS. All rights reserved.
 //
 

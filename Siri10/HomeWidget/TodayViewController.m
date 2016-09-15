@@ -43,6 +43,7 @@
 @interface TodayViewController () <NCWidgetProviding> {
     __weak IBOutlet ArcView *arcView;
     __weak IBOutlet UILabel *lblScore;
+    NSInteger points;
 }
 @end
 
@@ -54,14 +55,33 @@
 }
 
 - (void)viewDidLoad {
-    lblScore.text = @"Points Earned: 0/100";
+    points = 70;
+    [self setPoints];
+}
+
+- (void)setPoints {
+    lblScore.text = [NSString stringWithFormat:@"Points Earned: %ld/100", points];
 }
     
 - (void)showScore {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        lblScore.text = @"Points Earned: 70/100";
-        [arcView cropStartAngle:0 endAngle:252];
+        [arcView cropStartAngle:0 endAngle:self.angle];
     });
+}
+
+- (NSInteger)angle {
+    return 360 * points / 100;
+}
+
+- (IBAction)btnEarnTapped:(id)sender {
+    points += 5;
+    [self setPoints];
+    
+}
+
+- (IBAction)btnRedeemTapped:(id)sender {
+    points -= 5;
+    [self setPoints];
 }
 
 @end
