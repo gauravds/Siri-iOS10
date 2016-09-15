@@ -52,6 +52,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     //MARK: IBActions
     @IBAction func recordTapped() {
         speechTest()
+        
 //        if audioRecorder == nil {
 //            startRecording()
 //        } else {
