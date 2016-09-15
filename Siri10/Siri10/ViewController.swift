@@ -51,11 +51,12 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     //MARK: IBActions
     @IBAction func recordTapped() {
-        if audioRecorder == nil {
-            startRecording()
-        } else {
-            finishRecording(success: true)
-        }
+        speechTest()
+//        if audioRecorder == nil {
+//            startRecording()
+//        } else {
+//            finishRecording(success: true)
+//        }
     }
     
     //MARK: Audio Recording
@@ -87,7 +88,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
         if success {
             recordButton.setTitle("Tap to Re-record", for: .normal)
-            speechTest()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.speechTest()
+            }
         } else {
             recordButton.setTitle("Tap to Record", for: .normal)
             // recording failed :(
@@ -105,8 +108,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         self.logger.text = "Please wait..."
         SFSpeechRecognizer.requestAuthorization { authStatus in
             if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
-//                if let path = Bundle.main.url(forResource: "Guruvani", withExtension: "m4a") {
+//                if let path = Bundle.main.url(forResource: "VoiceTesting", withExtension: "m4a") {
                 if let path = URL(string: self.audioFileName!) {
+                    print(path)
                     let recognizer = SFSpeechRecognizer()
                     let request = SFSpeechURLRecognitionRequest(url: path)
                     recognizer?.recognitionTask(with: request, resultHandler: { [unowned self] (result, error) in

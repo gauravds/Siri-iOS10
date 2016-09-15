@@ -3,31 +3,62 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
         <scene sceneID="cwh-vc-ff4">
             <objects>
-                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="HomeWidget" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward Points : 100" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLw-81-nOy" customClass="ArcView">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mLw-81-nOy" secondAttribute="height" multiplier="1:1" id="4Tc-mz-T65"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fillImage" value="meterFilled"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="backImage" value="meterUnfilled"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points Earned 70/100" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-v1-hWZ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0H-C3-xcm" customClass="DesignBtn">
+                                <state key="normal" title="Redeem"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1T-eI-o6H" customClass="DesignBtn">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cwC-cX-kfP"/>
+                                </constraints>
+                                <state key="normal" title="Earn"/>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="8" symbolic="YES" id="0Q0-KW-PJ6"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="20" symbolic="YES" id="6Vq-gs-PHe"/>
-                            <constraint firstAttribute="trailing" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="20" symbolic="YES" id="L8K-9R-egU"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" symbolic="YES" id="mYS-Cv-VNx"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="w1T-eI-o6H" secondAttribute="bottom" constant="20" id="0JD-i9-9Aj"/>
+                            <constraint firstItem="b0H-C3-xcm" firstAttribute="width" secondItem="w1T-eI-o6H" secondAttribute="width" id="B2F-Mw-PPc"/>
+                            <constraint firstItem="w1T-eI-o6H" firstAttribute="width" secondItem="Dfm-v1-hWZ" secondAttribute="width" multiplier="45%" id="FGe-qn-BnO"/>
+                            <constraint firstItem="Dfm-v1-hWZ" firstAttribute="top" secondItem="mLw-81-nOy" secondAttribute="top" constant="10" id="Frq-EU-haC"/>
+                            <constraint firstAttribute="trailing" secondItem="Dfm-v1-hWZ" secondAttribute="trailing" constant="10" id="M6B-gJ-I9P"/>
+                            <constraint firstItem="mLw-81-nOy" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="5" id="TTt-Y6-lLg"/>
+                            <constraint firstItem="b0H-C3-xcm" firstAttribute="top" secondItem="w1T-eI-o6H" secondAttribute="top" id="UIv-qF-D7P"/>
+                            <constraint firstItem="b0H-C3-xcm" firstAttribute="height" secondItem="w1T-eI-o6H" secondAttribute="height" id="bjv-tx-cH9"/>
+                            <constraint firstItem="mLw-81-nOy" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="10" id="hoD-g9-g2H"/>
+                            <constraint firstItem="b0H-C3-xcm" firstAttribute="trailing" secondItem="Dfm-v1-hWZ" secondAttribute="trailing" id="osA-M5-QOZ"/>
+                            <constraint firstItem="w1T-eI-o6H" firstAttribute="leading" secondItem="Dfm-v1-hWZ" secondAttribute="leading" id="pfj-vv-VGb"/>
+                            <constraint firstAttribute="bottom" secondItem="mLw-81-nOy" secondAttribute="bottom" constant="5" id="swn-ev-Piq"/>
+                            <constraint firstItem="Dfm-v1-hWZ" firstAttribute="leading" secondItem="mLw-81-nOy" secondAttribute="trailing" constant="10" id="xWJ-as-z8m"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -35,10 +66,18 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="37"/>
+                    <size key="freeformSize" width="320" height="100"/>
+                    <connections>
+                        <outlet property="arcView" destination="mLw-81-nOy" id="jlr-ym-xbl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.59999999999999" y="135.832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="meterFilled" width="152" height="152"/>
+        <image name="meterUnfilled" width="152" height="152"/>
+    </resources>
 </document>

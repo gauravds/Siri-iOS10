@@ -42,9 +42,9 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeAdd</string>
+			<string>UIApplicationShortcutIconTypeSearch</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Create new user</string>
+			<string>Search Locations</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>be.thenerd.appshortcut.new-user</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
