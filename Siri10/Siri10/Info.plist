@@ -34,6 +34,26 @@
 	</array>
 	<key>NSSiriUsageDescription</key>
 	<string>Restaurant Booking using Siri</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>UIApplicationShortcutWidget</key>
+	<string>com.GDS.Siri10.HomeWidget</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Create new user</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>be.thenerd.appshortcut.new-user</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>name</key>
+				<string>Frederik</string>
+			</dict>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

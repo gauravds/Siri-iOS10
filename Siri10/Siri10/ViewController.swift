@@ -105,7 +105,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         self.logger.text = "Please wait..."
         SFSpeechRecognizer.requestAuthorization { authStatus in
             if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
-                if let path = Bundle.main.url(forResource: "Guruvani", withExtension: "m4a") {
+//                if let path = Bundle.main.url(forResource: "Guruvani", withExtension: "m4a") {
+                if let path = URL(string: self.audioFileName!) {
                     let recognizer = SFSpeechRecognizer()
                     let request = SFSpeechURLRecognitionRequest(url: path)
                     recognizer?.recognitionTask(with: request, resultHandler: { [unowned self] (result, error) in
